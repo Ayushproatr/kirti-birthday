@@ -10,29 +10,17 @@
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Dancing+Script:wght@400;700&family=Inter:wght@400;500;600&display=swap');
         
-        body {
-            font-family: 'Inter', system_ui, sans-serif;
-        }
-        .title-font {
-            font-family: 'Playfair Display', serif;
-        }
-        .script-font {
-            font-family: 'Dancing Script', cursive;
-        }
+        body { font-family: 'Inter', system_ui, sans-serif; }
+        .title-font { font-family: 'Playfair Display', serif; }
+        .script-font { font-family: 'Dancing Script', cursive; }
         
-        .page {
-            display: none;
-            min-height: 100vh;
-        }
-        .page.active {
-            display: flex;
-        }
+        .page { display: none; min-height: 100vh; }
+        .page.active { display: flex; }
         
         .hero-bg {
             background: linear-gradient(135deg, #f3e8ff 0%, #fce7f3 45%, #ede9fe 100%);
             animation: gentleShift 45s ease infinite;
         }
-        
         @keyframes gentleShift {
             0% { background-position: 0% 50%; }
             50% { background-position: 100% 50%; }
@@ -46,27 +34,22 @@
             opacity: 0.9;
             pointer-events: none;
         }
-        
         @keyframes floatHeart {
             0%, 100% { transform: translateY(0) rotate(0deg); }
             50% { transform: translateY(-95px) rotate(18deg); }
         }
         
         .teddy {
-            font-size: 4.5rem;
+            font-size: 4.8rem;
             animation: teddyBounce 3s ease-in-out infinite;
             cursor: pointer;
+            transition: transform 0.3s;
         }
-        
         @keyframes teddyBounce {
             0%, 100% { transform: translateY(0) rotate(-8deg); }
             50% { transform: translateY(-25px) rotate(8deg); }
         }
-        
-        .teddy-wave {
-            animation: teddyWave 2.2s ease-in-out infinite;
-        }
-        
+        .teddy-wave { animation: teddyWave 2.2s ease-in-out infinite !important; }
         @keyframes teddyWave {
             0%, 100% { transform: rotate(0deg); }
             50% { transform: rotate(25deg); }
@@ -75,14 +58,14 @@
         .speech-bubble {
             position: absolute;
             background: #fffbeb;
-            padding: 10px 18px;
+            padding: 10px 20px;
             border-radius: 9999px;
             font-size: 1rem;
             box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.15);
             animation: bubblePop 0.8s ease forwards;
             white-space: nowrap;
+            z-index: 10;
         }
-        
         @keyframes bubblePop {
             from { transform: scale(0.3); opacity: 0; }
             to { transform: scale(1); opacity: 1; }
@@ -98,7 +81,6 @@
             animation: notePop 0.7s ease forwards;
             cursor: pointer;
         }
-        
         @keyframes notePop {
             from { transform: scale(0.5) rotate(-15deg); opacity: 0; }
             to { transform: scale(1) rotate(0deg); opacity: 1; }
@@ -137,12 +119,11 @@
                     class="mt-8 w-full bg-gradient-to-r from-pink-500 to-purple-600 text-white font-semibold text-xl py-7 rounded-3xl">
                 Unlock Your Royal Adventure
             </button>
-            <p id="password-error" class="mt-6 text-red-500 text-sm hidden">Wrong code, princess... try again 💕</p>
+            <p id="password-error" class="mt-6 text-red-500 text-sm hidden">Wrong code... try again 💕</p>
             <p class="text-xs text-purple-400 mt-12">Hint: You say this to me with love all the time</p>
             
-            <!-- Cute teddy at password -->
-            <div class="absolute -bottom-6 -left-6 text-6xl teddy">🧸</div>
-            <div class="speech-bubble absolute -top-4 left-16 text-purple-700 text-sm">Psst... the code is something you always say to me 💖</div>
+            <div class="absolute -bottom-8 -left-8 text-6xl teddy">🧸</div>
+            <div class="speech-bubble absolute -top-4 left-20 text-purple-700 text-sm">Psst... the code is "iammostspecial" 💖</div>
         </div>
     </div>
 
@@ -151,15 +132,12 @@
         <span class="text-3xl">🎵</span>
         <div class="text-left">
             <div class="font-medium text-purple-700">Tera Yaar Hoon Main</div>
-            <div class="text-xs text-pink-600 tracking-widest">Softly playing for you, Kirti 💕</div>
+            <div class="text-xs text-pink-600 tracking-widest">Softly for you, Kirti 💕</div>
         </div>
         <audio id="bg-music" loop>
             <source src="music.mp3" type="audio/mpeg">
         </audio>
-        <button onclick="toggleMusic()" id="music-btn"
-                class="w-11 h-11 flex items-center justify-center text-3xl text-purple-600 hover:text-pink-500 transition rounded-full hover:bg-purple-100">
-            ▶️
-        </button>
+        <button onclick="toggleMusic()" id="music-btn" class="w-11 h-11 flex items-center justify-center text-3xl text-purple-600 hover:text-pink-500 transition rounded-full hover:bg-purple-100">▶️</button>
     </div>
 
     <!-- Progress -->
@@ -170,37 +148,33 @@
     <!-- Page 1: Grand Opening -->
     <div id="page1" class="page active hero-bg flex flex-col items-center justify-center text-center px-6 relative">
         <div class="absolute inset-0 pointer-events-none overflow-hidden">
-            <div class="floating-heart text-pink-400 left-[8%] top-[15%]">💖</div>
-            <div class="floating-heart text-purple-400 left-[28%] top-[48%]" style="animation-delay: 1.4s;">✨</div>
-            <div class="floating-heart text-rose-300 left-[15%] bottom-[32%]" style="animation-delay: 2.7s;">👑</div>
+            <div class="floating-heart text-pink-400 left-[10%] top-[15%]">💖</div>
+            <div class="floating-heart text-purple-400 left-[30%] top-[48%]" style="animation-delay:1.4s;">✨</div>
         </div>
         
-        <!-- Cute Teddies -->
         <div class="absolute top-12 left-8 text-7xl teddy" onclick="this.classList.add('teddy-wave')">🧸</div>
-        <div class="speech-bubble absolute top-8 left-24 text-purple-700 text-sm">Hi Princess Kirti! I'm so excited for your birthday! 💕</div>
+        <div class="speech-bubble absolute top-8 left-28 text-purple-700 text-sm">Hi Princess! I'm so excited for your birthday! 💕</div>
         
-        <div class="absolute bottom-20 right-10 text-6xl teddy" style="animation-delay: 0.8s;" onclick="this.classList.add('teddy-wave')">🧸</div>
+        <div class="absolute bottom-20 right-10 text-6xl teddy" style="animation-delay:0.8s;" onclick="this.classList.add('teddy-wave')">🧸</div>
         <div class="speech-bubble absolute bottom-28 right-28 text-purple-700 text-sm">You are the cutest ever! Happp happp!</div>
         
         <div class="max-w-xl relative z-10">
             <div class="inline-flex items-center gap-3 bg-white/70 backdrop-blur px-8 py-3 rounded-3xl mb-10 shadow">
                 <span class="text-3xl">🎂</span>
-                <span class="font-semibold tracking-widest">24 AUGUST • YOUR SPECIAL DAY</span>
+                <span class="font-semibold tracking-widest">24 AUGUST • YOUR ROYAL DAY</span>
             </div>
             
             <h1 class="title-font text-6xl md:text-7xl font-bold leading-none glow-text bg-gradient-to-br from-purple-700 via-pink-500 to-violet-600 bg-clip-text text-transparent">
                 Happy Birthday,<br>My Princess Kirti
             </h1>
             
-            <p class="mt-8 text-2xl text-purple-700 script-font">A magical, extra-long journey made with all my love just for you</p>
+            <p class="mt-8 text-2xl text-purple-700 script-font">A magical long journey made with endless love by your Ayush</p>
             
-            <button onclick="nextPage(2)" 
-                    class="next-btn mt-16 w-full max-w-xs mx-auto bg-gradient-to-r from-pink-500 to-purple-600 text-white font-semibold text-2xl px-16 py-8 rounded-3xl shadow-2xl flex items-center justify-center gap-6">
+            <button onclick="nextPage(2)" class="next-btn mt-16 w-full max-w-xs mx-auto bg-gradient-to-r from-pink-500 to-purple-600 text-white font-semibold text-2xl px-16 py-8 rounded-3xl shadow-2xl flex items-center justify-center gap-6">
                 Start Your Royal Adventure 🪄
             </button>
         </div>
         
-        <!-- Secret Note -->
         <div onclick="this.style.opacity=0.3" class="secret-note top-[25%] right-[15%] rotate-6">You deserve all the cuddles in the world 💕</div>
     </div>
 
@@ -208,35 +182,27 @@
     <div id="page2" class="page hero-bg flex flex-col items-center justify-center px-6 py-16 relative">
         <div class="max-w-2xl w-full bg-white rounded-3xl shadow-2xl p-12 md:p-16">
             <div class="flex justify-center mb-8">
-                <span class="px-10 py-4 bg-purple-50 text-purple-600 rounded-3xl text-2xl font-medium flex items-center gap-4">
-                    📜 Friendship Letter
-                </span>
+                <span class="px-10 py-4 bg-purple-50 text-purple-600 rounded-3xl text-2xl font-medium flex items-center gap-4">📜 Friendship Letter</span>
             </div>
-            
             <div class="prose prose-xl leading-relaxed text-purple-800">
-                <p class="mb-8">My dearest Kirti, my favorite princess in the whole universe,</p>
-                <p class="mb-8">You have made my life so much brighter. Every “happp”, every laugh, every moment with you feels like magic.</p>
-                <p class="mb-8">We’ve always dreamt of the day we meet and enjoy the most delicious food together — talking, laughing, and creating memories that last forever.</p>
-                
+                <p class="mb-8">My dearest Kirti, my favorite princess,</p>
+                <p class="mb-8">You light up my world with your smile and every cute “happp” you say. Thank you for being the best part of my life.</p>
+                <p class="mb-8">We’ve always dreamt of meeting and enjoying the most delicious food together — laughing and making beautiful memories.</p>
                 <div class="bg-gradient-to-r from-purple-50 to-pink-50 p-10 rounded-3xl italic text-2xl border-l-8 border-purple-400 my-12">
-                    I will always be with you — in happiness, sadness, anxiety, or any tough moment.<br>
-                    I promise to hold your hand and remind you how incredibly special and loved you are.
+                    I will always be with you — in happiness, sadness, anxiety, or any moment.<br>I promise to hold your hand and remind you how special you are.
                 </div>
-                
                 <p class="text-right script-font text-5xl text-pink-600 mt-12">Forever your Ayush 💕</p>
             </div>
         </div>
         
-        <!-- Teddies on this page -->
         <div class="absolute top-12 left-12 text-6xl teddy">🧸</div>
         <div class="speech-bubble absolute top-10 left-28 text-purple-700 text-sm">Kirti is the best bestie ever!</div>
         
-        <div class="absolute bottom-16 right-12 text-6xl teddy" style="animation-delay: 1.2s;">🧸</div>
+        <div class="absolute bottom-16 right-12 text-6xl teddy" style="animation-delay:1.2s;">🧸</div>
         <div class="speech-bubble absolute bottom-24 right-28 text-purple-700 text-sm">Happp to you, princess! 🥰</div>
         
         <button onclick="nextPage(3)" class="next-btn mt-12 bg-white text-purple-700 font-medium px-14 py-6 rounded-3xl shadow text-xl">Next Magical Chapter →</button>
         
-        <!-- Secret Note -->
         <div onclick="this.style.opacity=0.3" class="secret-note bottom-[25%] left-[12%] -rotate-6">You make my heart do little dances 💖</div>
     </div>
 
@@ -245,47 +211,34 @@
         <div class="max-w-2xl">
             <div class="text-9xl mb-10">🍽️❤️</div>
             <h2 class="title-font text-6xl text-purple-700 mb-6">Our Beautiful Dream</h2>
-            <p class="text-2xl leading-relaxed text-purple-700">
-                The day we finally meet, we will eat the most extra delicious food, laugh until our stomachs hurt, and make memories that feel like a fairytale.
-            </p>
+            <p class="text-2xl leading-relaxed text-purple-700">The day we meet, we’ll eat the most extra delicious food, laugh nonstop, and create memories that feel like a fairytale.</p>
         </div>
         
-        <!-- Teddies -->
         <div class="absolute top-20 left-8 text-7xl teddy">🧸</div>
         <div class="speech-bubble absolute top-16 left-28 text-purple-700 text-sm">Yummy food date with Kirti soon! 🍔🥳</div>
         
         <button onclick="nextPage(4)" class="next-btn mt-16 bg-gradient-to-r from-purple-500 to-pink-500 text-white px-16 py-7 rounded-3xl font-semibold text-xl">Continue the Magic 💕</button>
         
-        <!-- Secret Note -->
         <div onclick="this.style.opacity=0.3" class="secret-note top-[38%] right-[18%] rotate-12">I can't wait to see you smile across the table ✨</div>
     </div>
 
-    <!-- Page 4: Happp Challenge + Cuteness Meter -->
+    <!-- Page 4: Happp Challenge -->
     <div id="page4" class="page hero-bg flex flex-col items-center justify-center px-6 py-16 text-center relative">
         <h2 class="title-font text-6xl text-purple-700 mb-8">The Happp Challenge 👑</h2>
         <p class="text-2xl text-purple-600 mb-10">Type “happp” as many times as you want. Every one makes me smile bigger!</p>
         
         <div class="bg-white rounded-3xl p-10 shadow-xl max-w-md mx-auto w-full">
-            <input id="happp-input" type="text" placeholder="happp..." 
-                   class="w-full bg-purple-50 border-2 border-purple-200 focus:border-pink-400 rounded-3xl px-8 py-7 text-4xl text-center outline-none">
+            <input id="happp-input" type="text" placeholder="happp..." class="w-full bg-purple-50 border-2 border-purple-200 focus:border-pink-400 rounded-3xl px-8 py-7 text-4xl text-center outline-none">
             <button onclick="sendHappp()" class="mt-8 w-full bg-pink-500 text-white font-semibold text-xl py-6 rounded-3xl">Send Happp 💖</button>
         </div>
         
         <div id="happp-response" class="mt-10 text-2xl min-h-[100px]"></div>
         
-        <!-- Cuteness Meter -->
         <div class="mt-12 w-full max-w-md mx-auto">
-            <div class="flex justify-between text-sm text-purple-600 mb-2">
-                <span>Kirti’s Cuteness Meter</span>
-                <span id="meter-percent">0%</span>
-            </div>
-            <div class="bg-purple-200 rounded-full p-1">
-                <div id="cuteness-bar" class="cuteness-meter w-0"></div>
-            </div>
-            <p class="text-xs text-purple-500 mt-3">Keep typing happp... the meter loves you!</p>
+            <div class="flex justify-between text-sm text-purple-600 mb-2"><span>Kirti’s Cuteness Meter</span><span id="meter-percent">0%</span></div>
+            <div class="bg-purple-200 rounded-full p-1"><div id="cuteness-bar" class="cuteness-meter w-0"></div></div>
         </div>
         
-        <!-- Teddies -->
         <div class="absolute bottom-12 left-12 text-6xl teddy">🧸</div>
         <div class="speech-bubble absolute bottom-20 left-28 text-purple-700 text-sm">You are SO cute when you say happp! 🥰</div>
         
@@ -297,91 +250,77 @@
         <div class="max-w-2xl">
             <div class="text-8xl mb-10">🤍</div>
             <h2 class="title-font text-6xl text-purple-700 mb-10">My Promise to You</h2>
-            <p class="text-2xl leading-relaxed text-purple-800">
-                I will always be with you — in happiness, sadness, anxiety, or any moment life brings.<br><br>
-                You never have to face anything alone. I’m right here, holding your hand forever.
-            </p>
+            <p class="text-2xl leading-relaxed text-purple-800">I will always be with you — in happiness, sadness, anxiety, or any moment. You never have to face anything alone.</p>
         </div>
         
-        <!-- Teddies -->
-        <div class="absolute top-16 right-12 text-7xl teddy" style="animation-delay: 1s;">🧸</div>
+        <div class="absolute top-16 right-12 text-7xl teddy" style="animation-delay:1s;">🧸</div>
         <div class="speech-bubble absolute top-12 right-28 text-purple-700 text-sm">I'll always protect your smile, princess!</div>
         
         <button onclick="nextPage(6)" class="next-btn mt-16 bg-gradient-to-r from-purple-600 to-pink-500 text-white px-16 py-7 rounded-3xl text-xl font-semibold">Keep Going ✨</button>
     </div>
 
-    <!-- Page 6: Why Kirti is Special (New) -->
+    <!-- Page 6: Why You Are Special -->
     <div id="page6" class="page hero-bg flex flex-col items-center justify-center px-6 py-16 text-center relative">
         <h2 class="title-font text-6xl text-purple-700 mb-8">Why You Are My Princess</h2>
         <div class="max-w-2xl grid grid-cols-2 gap-6 text-left">
-            <div class="bg-white p-6 rounded-3xl shadow">✨ Your smile lights up my entire day</div>
-            <div class="bg-white p-6 rounded-3xl shadow">💕 Every “happp” you say melts my heart</div>
-            <div class="bg-white p-6 rounded-3xl shadow">🍽️ Our future food adventures together</div>
-            <div class="bg-white p-6 rounded-3xl shadow">👑 You make everything feel magical</div>
+            <div class="bg-white p-6 rounded-3xl shadow">✨ Your smile lights up my day</div>
+            <div class="bg-white p-6 rounded-3xl shadow">💕 Every “happp” melts my heart</div>
+            <div class="bg-white p-6 rounded-3xl shadow">🍽️ Our future food adventures</div>
+            <div class="bg-white p-6 rounded-3xl shadow">👑 You make everything magical</div>
         </div>
         
-        <!-- Teddies -->
         <div class="absolute top-24 left-8 text-6xl teddy">🧸</div>
         <div class="speech-bubble absolute top-20 left-24 text-purple-700 text-sm">Kirti = 100% perfection!</div>
         
         <button onclick="nextPage(7)" class="next-btn mt-12 bg-white text-purple-700 px-14 py-6 rounded-3xl shadow text-xl">More Magic →</button>
     </div>
 
-    <!-- Page 7: Teddy's Personal Messages (New) -->
+    <!-- Page 7: Teddy Messages -->
     <div id="page7" class="page bg-gradient-to-br from-pink-100 to-purple-100 flex flex-col items-center justify-center px-6 py-16 text-center relative">
         <h2 class="title-font text-6xl text-purple-700 mb-8">Messages from Your Birthday Teddies</h2>
-        
         <div class="flex flex-wrap justify-center gap-12 max-w-4xl">
             <div class="relative">
                 <div class="text-8xl teddy">🧸</div>
-                <div class="speech-bubble -top-2 left-14 text-purple-700">Kirti, you are the cutest human ever! Happp happp!</div>
+                <div class="speech-bubble -top-2 left-14 text-purple-700">Kirti, you are the cutest human ever!</div>
             </div>
-            <div class="relative" style="animation-delay: 0.6s;">
+            <div class="relative" style="animation-delay:0.6s;">
                 <div class="text-8xl teddy teddy-wave">🧸</div>
-                <div class="speech-bubble -top-2 right-14 text-purple-700">I wish I could hug you right now, princess!</div>
+                <div class="speech-bubble -top-2 right-14 text-purple-700">I wish I could hug you right now!</div>
             </div>
-            <div class="relative" style="animation-delay: 1.2s;">
+            <div class="relative" style="animation-delay:1.2s;">
                 <div class="text-8xl teddy">🧸</div>
-                <div class="speech-bubble -bottom-2 left-14 text-purple-700">You make Ayush the happiest bestie alive 💕</div>
+                <div class="speech-bubble -bottom-2 left-14 text-purple-700">You make Ayush the happiest!</div>
             </div>
         </div>
         
         <button onclick="nextPage(8)" class="next-btn mt-16 bg-gradient-to-r from-purple-500 to-pink-500 text-white px-16 py-7 rounded-3xl font-semibold text-xl">Next Cute Surprise →</button>
     </div>
 
-    <!-- Page 8: Magical Birthday Wish (New) -->
+    <!-- Page 8: Birthday Wish -->
     <div id="page8" class="page hero-bg flex flex-col items-center justify-center px-6 py-16 text-center relative">
         <div class="text-9xl mb-10">🌟🪄</div>
         <h2 class="title-font text-6xl text-purple-700 mb-6">My Birthday Wish for You</h2>
-        <p class="text-2xl max-w-xl leading-relaxed text-purple-700">
-            May this year bring you endless smiles, delicious food adventures, and all the happiness you deserve. You are my favorite person, Kirti.
-        </p>
+        <p class="text-2xl max-w-xl leading-relaxed text-purple-700">May this year bring you endless smiles, delicious food adventures, and all the happiness you deserve. You are my favorite person.</p>
         
-        <!-- Teddies -->
         <div class="absolute bottom-12 left-12 text-7xl teddy">🧸</div>
-        <div class="speech-bubble absolute bottom-20 left-28 text-purple-700 text-sm">Make a wish, princess! I'll help blow out the candles ✨</div>
+        <div class="speech-bubble absolute bottom-20 left-28 text-purple-700 text-sm">Make a wish, princess! I'll help blow the candles ✨</div>
         
         <button onclick="nextPage(9)" class="next-btn mt-16 bg-white text-purple-700 px-14 py-6 rounded-3xl shadow text-xl">Final Chapter →</button>
     </div>
 
-    <!-- Page 9: Final Grand Reveal + Broken Meter -->
+    <!-- Page 9: Final Reveal -->
     <div id="page9" class="page hero-bg flex flex-col items-center justify-center px-6 py-16 text-center relative">
         <div class="max-w-3xl">
             <div class="text-9xl mb-10">👑🎉✨</div>
-            <h2 class="title-font text-7xl text-transparent bg-clip-text bg-gradient-to-br from-purple-700 to-pink-500 mb-8">You reached the end, my Princess Kirti</h2>
+            <h2 class="title-font text-7xl text-transparent bg-clip-text bg-gradient-to-br from-purple-700 to-pink-500 mb-8">You reached the end, my Princess</h2>
+            <p class="text-3xl text-purple-700 leading-relaxed">This long journey was made with so much love and hard work so you feel like the most special princess in the world.</p>
             
-            <p class="text-3xl text-purple-700 leading-relaxed">This entire extra-long adventure was created with so much love and hard work just so you feel like the most special princess in the world.</p>
-            
-            <!-- Final Cuteness Meter -->
             <div class="mt-16 w-full max-w-md mx-auto">
-                <div class="text-2xl font-medium text-pink-600 mb-4">Kirti’s Final Cuteness Level</div>
+                <div class="text-2xl font-medium text-pink-600 mb-4">Final Cuteness Level</div>
                 <div class="bg-purple-200 rounded-full p-1">
                     <div id="final-meter" class="cuteness-meter w-[98%]"></div>
                 </div>
-                <button onclick="breakCutenessMeter()" 
-                        class="mt-6 bg-pink-500 text-white px-10 py-4 rounded-3xl text-lg font-semibold">
-                    Tap to see the truth about your cuteness ✨
-                </button>
+                <button onclick="breakCutenessMeter()" class="mt-6 bg-pink-500 text-white px-10 py-4 rounded-3xl text-lg font-semibold">Tap to see the truth ✨</button>
             </div>
             
             <div id="final-gift" class="hidden mt-12 bg-white/80 backdrop-blur-2xl rounded-3xl p-12 text-xl">
@@ -390,24 +329,21 @@
             </div>
         </div>
         
-        <!-- Final Teddies -->
         <div class="absolute bottom-12 left-8 text-7xl teddy">🧸</div>
         <div class="speech-bubble absolute bottom-20 left-24 text-purple-700 text-sm">You are beyond perfect, Kirti! 💖</div>
         
-        <div onclick="this.style.opacity=0.3" class="secret-note bottom-[25%] right-[15%]">I worked so hard on this because you deserve the best gift ever</div>
+        <div onclick="this.style.opacity=0.3" class="secret-note bottom-[25%] right-[15%]">I worked so hard because you deserve the best gift ever</div>
     </div>
 
     <script>
         let currentPage = 1;
         const totalPages = 9;
         let cutenessLevel = 0;
-        
         const password = "iammostspecial";
         
         function checkPassword() {
             const input = document.getElementById('password-input').value.trim().toLowerCase();
             const error = document.getElementById('password-error');
-            
             if (input === password) {
                 document.getElementById('password-screen').style.display = 'none';
                 document.getElementById('page1').classList.add('active');
@@ -438,24 +374,17 @@
         }
         
         function launchConfetti(count = 160) {
-            confetti({
-                particleCount: count,
-                spread: 90,
-                origin: { y: 0.6 },
-                colors: ['#c026d3', '#ec4899', '#a78bfa', '#f472b6', '#facc15']
-            });
+            confetti({ particleCount: count, spread: 90, origin: { y: 0.6 }, colors: ['#c026d3', '#ec4899', '#a78bfa', '#f472b6', '#facc15'] });
         }
         
         function sendHappp() {
             const input = document.getElementById('happp-input').value.trim().toLowerCase();
             const resp = document.getElementById('happp-response');
-            
             if (input.includes('happp') || input.length > 2) {
                 cutenessLevel = Math.min(100, cutenessLevel + 22);
                 document.getElementById('cuteness-bar').style.width = cutenessLevel + '%';
                 document.getElementById('meter-percent').textContent = cutenessLevel + '%';
-                
-                resp.innerHTML = `HAPPPPPP!!! 💕<br>Your cuteness just exploded! Keep going, princess.`;
+                resp.innerHTML = `HAPPPPPP!!! 💕<br>Your cuteness just exploded!`;
                 launchConfetti(110);
             } else {
                 resp.textContent = "Any happp from you makes the world brighter 💖";
@@ -467,11 +396,9 @@
             const meter = document.getElementById('final-meter');
             meter.style.transitionDuration = '1.4s';
             meter.style.width = '100%';
-            
             setTimeout(() => {
                 meter.style.background = 'linear-gradient(to right, #eab308, #ec4899, #ef4444)';
                 launchConfetti(320);
-                
                 setTimeout(() => {
                     document.getElementById('final-gift').classList.remove('hidden');
                     launchConfetti(220);
@@ -494,10 +421,7 @@
         window.onload = () => {
             const audio = document.getElementById('bg-music');
             audio.volume = 0.36;
-            
             document.getElementById('password-input').focus();
-            
-            console.log('%c👑 Extra-long Royal Birthday Adventure for Princess Kirti - Created with endless love & cute teddies by Ayush', 'color:#c026d3; font-size:16px; font-family:Playfair Display');
         };
         
         document.getElementById('password-input').addEventListener('keypress', function(e) {
@@ -505,4 +429,4 @@
         });
     </script>
 </body>
-    </html>
+                </html>
