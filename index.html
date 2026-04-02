@@ -1,89 +1,115 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Birthday Surprise</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>✨ Princess Kirti • Royal Birthday Journey ✨</title>
 
-<script src="https://cdn.tailwindcss.com"></script>
-<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
 
-<style>
-body { overflow:hidden; cursor:none; font-family: sans-serif; }
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Dancing+Script:wght@400;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 
-/* Cursor Glow */
-.cursor{
-position:fixed;
-width:18px;
-height:18px;
-border-radius:50%;
-background:#ec4899;
-pointer-events:none;
-transform:translate(-50%,-50%);
-z-index:999;
-}
+    <style>
+        body { font-family: 'Inter', sans-serif; overflow:hidden; }
+        .title-font { font-family: 'Playfair Display', serif; }
+        .script-font { font-family: 'Dancing Script', cursive; }
 
-/* Pages */
-.page{ display:none; opacity:0; transition:1s; }
-.page.active{ display:flex; opacity:1; }
+        .page { display:none; min-height:100vh; opacity:0; transition:opacity 1s; }
+        .page.active { display:flex; opacity:1; }
 
-/* Floating hearts */
-.floating-heart{
-position:absolute;
-animation:float 8s linear;
-font-size:22px;
-}
-@keyframes float{
-0%{ transform:translateY(0); opacity:1;}
-100%{ transform:translateY(-800px); opacity:0;}
-}
+        .hero-bg {
+            background: linear-gradient(135deg, #f3e8ff 0%, #fce7f3 45%, #ede9fe 100%);
+        }
 
-</style>
+        .floating-heart {
+            position:absolute;
+            font-size:2rem;
+            animation: floatHeart 8s linear;
+        }
+
+        @keyframes floatHeart {
+            0% { transform: translateY(0); opacity:1; }
+            100% { transform: translateY(-800px); opacity:0; }
+        }
+
+        .next-btn {
+            transition: all 0.4s;
+        }
+        .next-btn:hover {
+            transform: scale(1.1);
+        }
+    </style>
 </head>
 
-<body class="bg-gradient-to-br from-pink-100 to-purple-200 text-center">
-
-<div class="cursor" id="cursor"></div>
+<body class="bg-purple-50 text-purple-900">
 
 <!-- Progress Dots -->
-<div id="progress" class="fixed top-3 left-1/2 -translate-x-1/2 flex gap-2 z-50"></div>
+<div id="progress" class="fixed top-4 left-1/2 -translate-x-1/2 flex gap-2 z-50"></div>
 
-<!-- PASSWORD SCREEN -->
-<div id="password-screen" class="fixed inset-0 bg-purple-600 flex items-center justify-center z-50">
-<div class="bg-white p-8 rounded-xl shadow-xl">
-<h2 class="text-2xl mb-4">Enter Password</h2>
-<input id="password-input" type="password" class="border p-3 text-center">
-<br>
-<button onclick="checkPassword()" class="bg-pink-500 text-white px-6 py-2 mt-4 rounded">Enter</button>
-<p id="password-error" class="text-red-500 mt-2 hidden">Wrong Password</p>
-</div>
-</div>
-
-<!-- PAGE 1 -->
-<div id="page1" class="page active h-screen items-center justify-center flex-col">
-<h1 class="text-5xl mb-5">Happy Birthday 🎂</h1>
-<p class="mb-6">A small surprise for you</p>
-<button onclick="nextPage(2)" class="bg-pink-500 text-white px-6 py-3 rounded">Start</button>
-</div>
-
-<!-- PAGE 2 Typing -->
-<div id="page2" class="page h-screen items-center justify-center flex-col px-6">
-<p id="typing-text" class="text-lg max-w-xl"></p>
-<button onclick="nextPage(3)" class="mt-6 bg-purple-500 text-white px-6 py-3 rounded">Next</button>
+<!-- Password Screen -->
+<div id="password-screen" class="fixed inset-0 bg-gradient-to-br from-purple-700 to-pink-600 flex items-center justify-center z-[200]">
+    <div class="max-w-md w-full bg-white rounded-3xl shadow-2xl p-10 text-center">
+        <div class="text-6xl mb-4">👑</div>
+        <h2 class="title-font text-3xl text-purple-700 mb-6">Only for My Princess Kirti</h2>
+        
+        <input id="password-input" type="password" placeholder="Enter password"
+        class="w-full bg-purple-50 border-2 border-purple-200 rounded-2xl px-6 py-4 text-center">
+        
+        <button onclick="checkPassword()" 
+        class="mt-6 w-full bg-gradient-to-r from-pink-500 to-purple-600 text-white py-4 rounded-2xl">
+        Open Your Royal Journey
+        </button>
+        
+        <p id="password-error" class="mt-4 text-red-500 hidden">Wrong password</p>
+    </div>
 </div>
 
-<!-- PAGE 3 Candle -->
-<div id="page3" class="page h-screen items-center justify-center flex-col">
-<div class="text-2xl mb-4">Make a wish 🥺</div>
-<div onclick="blowCandle()" class="text-7xl cursor-pointer">🕯️</div>
-<button onclick="nextPage(4)" class="mt-6 bg-pink-500 text-white px-6 py-3 rounded">Next</button>
+<!-- Music Player -->
+<div class="fixed bottom-4 right-4 z-50 bg-white rounded-2xl shadow px-4 py-3 flex items-center gap-3">
+    <span>🎵</span>
+    <audio id="bg-music" loop>
+        <source src="music.mp3" type="audio/mpeg">
+    </audio>
+    <button onclick="toggleMusic()" id="music-btn">▶️</button>
 </div>
 
-<!-- PAGE 4 Final -->
-<div id="page4" class="page h-screen items-center justify-center flex-col">
-<h2 class="text-3xl mb-4">You matter a lot to me 💛</h2>
-<button onclick="finalSurprise()" class="bg-purple-600 text-white px-6 py-3 rounded">Final Surprise</button>
-<button onclick="secretMessage()" class="mt-3 underline text-sm">Secret Message</button>
+<!-- Page 1 -->
+<div id="page1" class="page active hero-bg flex flex-col items-center justify-center text-center px-6">
+    <h1 class="title-font text-6xl">Happy Birthday,<br>My Princess 🎂</h1>
+    <p class="mt-6 text-xl">A magical journey made with love</p>
+    <button onclick="nextPage(2)" class="next-btn mt-10 bg-pink-500 text-white px-10 py-4 rounded-2xl">
+        Begin Your Royal Adventure ✨
+    </button>
+</div>
+
+<!-- Page 2 Typing Letter -->
+<div id="page2" class="page hero-bg flex flex-col items-center justify-center px-6">
+    <div class="max-w-xl bg-white rounded-3xl shadow-2xl p-10">
+        <h2 class="title-font text-3xl mb-4">📜 Letter For You</h2>
+        <p id="typing-text" class="text-lg text-purple-800"></p>
+    </div>
+    <button onclick="nextPage(3)" class="next-btn mt-8 bg-purple-500 text-white px-8 py-3 rounded-xl">
+        Next
+    </button>
+</div>
+
+<!-- Page 3 Candle -->
+<div id="page3" class="page hero-bg flex flex-col items-center justify-center">
+    <div class="text-2xl mb-6">Make a wish and blow the candle 🥺</div>
+    <div class="text-7xl cursor-pointer" onclick="blowCandle()">🕯️</div>
+    <button onclick="nextPage(4)" class="next-btn mt-10 bg-pink-500 text-white px-8 py-3 rounded-xl">
+        Next Surprise
+    </button>
+</div>
+
+<!-- Page 4 Final -->
+<div id="page4" class="page hero-bg flex flex-col items-center justify-center text-center">
+    <h2 class="title-font text-4xl mb-6">Thank You for Being My Best Friend 💛</h2>
+    <button onclick="finalSurprise()" class="bg-purple-600 text-white px-8 py-3 rounded-xl">
+        Celebrate 🎉
+    </button>
+    <button onclick="secretMessage()" class="mt-3 underline text-sm">Secret Message</button>
 </div>
 
 <script>
@@ -93,108 +119,114 @@ const correctPassword = "16/12/2025";
 
 /* Password */
 function checkPassword(){
-let input = document.getElementById("password-input").value;
-if(input === correctPassword){
-document.getElementById("password-screen").style.display="none";
-updateProgress();
-startTyping();
-launchConfetti();
-}else{
-document.getElementById("password-error").classList.remove("hidden");
-}
+    let input = document.getElementById("password-input").value;
+    if(input === correctPassword){
+        document.getElementById("password-screen").style.display="none";
+        updateProgress();
+        launchConfetti();
+        startTyping();
+    }else{
+        document.getElementById("password-error").classList.remove("hidden");
+    }
 }
 
 /* Page Navigation */
 function nextPage(page){
-document.getElementById("page"+currentPage).classList.remove("active");
-currentPage = page;
-document.getElementById("page"+currentPage).classList.add("active");
-updateProgress();
-launchConfetti(80);
+    document.getElementById("page"+currentPage).classList.remove("active");
+    currentPage = page;
+    document.getElementById("page"+currentPage).classList.add("active");
+    updateProgress();
+    launchConfetti(80);
 }
 
-/* Progress Dots */
+/* Progress */
 function updateProgress(){
-const container = document.getElementById("progress");
-container.innerHTML="";
-for(let i=1;i<=totalPages;i++){
-let dot = document.createElement("div");
-dot.className = "w-3 h-3 rounded-full " + (i<=currentPage ? "bg-purple-600" : "bg-gray-300");
-container.appendChild(dot);
-}
+    const container = document.getElementById("progress");
+    container.innerHTML="";
+    for(let i=1;i<=totalPages;i++){
+        let dot=document.createElement("div");
+        dot.className="w-3 h-3 rounded-full "+(i<=currentPage?"bg-purple-600":"bg-gray-300");
+        container.appendChild(dot);
+    }
 }
 
 /* Typing Text */
 function startTyping(){
-let text = "You are honestly one of the easiest people to talk to and one of the realest friends I have. Life feels a little lighter with you around. I hope you stay happy, keep smiling, and never change the person you are. Happy Birthday Bestie 🙂";
-let i=0;
-function type(){
-if(i < text.length){
-document.getElementById("typing-text").innerHTML += text[i];
-i++;
-setTimeout(type, 35);
-}
-}
-type();
+    let text="You are honestly one of the easiest people to talk to and one of the realest friends I have. Life feels a little lighter with you around. I hope you stay happy, keep smiling, and never change the person you are. Happy Birthday Bestie 🙂";
+    let i=0;
+    function type(){
+        if(i<text.length){
+            document.getElementById("typing-text").innerHTML+=text[i];
+            i++;
+            setTimeout(type,35);
+        }
+    }
+    type();
 }
 
 /* Candle */
 function blowCandle(){
-document.querySelector("#page3 div:nth-child(2)").innerHTML="💨";
-launchConfetti(200);
+    document.querySelector("#page3 div:nth-child(2)").innerHTML="💨";
+    launchConfetti(200);
 }
 
 /* Confetti */
 function launchConfetti(count=120){
-confetti({particleCount:count,spread:70,origin:{y:0.6}});
+    confetti({particleCount:count,spread:70,origin:{y:0.6}});
 }
 
 /* Final Surprise */
 function finalSurprise(){
-for(let i=0;i<5;i++){
-setTimeout(()=>launchConfetti(200), i*400);
-}
-alert("Stay happy, stay the same… that's what makes you special 🙂");
+    for(let i=0;i<5;i++){
+        setTimeout(()=>launchConfetti(200),i*400);
+    }
+    alert("Stay happy, stay the same… that's what makes you special 🙂");
 }
 
 /* Secret Message */
 function secretMessage(){
-alert("You’re honestly one of the best people I’ve met. Don’t change.");
+    alert("You’re honestly one of the best people I’ve met. Don’t change.");
 }
 
 /* Floating Hearts */
 setInterval(()=>{
-let heart=document.createElement("div");
-heart.className="floating-heart";
-heart.innerHTML="💖";
-heart.style.left=Math.random()*100+"%";
-heart.style.bottom="0px";
-document.body.appendChild(heart);
-setTimeout(()=>heart.remove(),8000);
+    let heart=document.createElement("div");
+    heart.className="floating-heart";
+    heart.innerHTML="💖";
+    heart.style.left=Math.random()*100+"%";
+    heart.style.bottom="0px";
+    document.body.appendChild(heart);
+    setTimeout(()=>heart.remove(),8000);
 },700);
 
-/* Cursor */
-document.addEventListener("mousemove",(e)=>{
-let c=document.getElementById("cursor");
-c.style.top=e.clientY+"px";
-c.style.left=e.clientX+"px";
-});
+/* Music */
+function toggleMusic(){
+    const audio=document.getElementById("bg-music");
+    const btn=document.getElementById("music-btn");
+    if(audio.paused){
+        audio.play();
+        btn.textContent="⏸️";
+    }else{
+        audio.pause();
+        btn.textContent="▶️";
+    }
+}
 
 /* Swipe Navigation */
 let startX=0;
 document.addEventListener("touchstart",(e)=> startX=e.touches[0].clientX);
 document.addEventListener("touchend",(e)=>{
-let endX=e.changedTouches[0].clientX;
-if(startX-endX>50 && currentPage<4) nextPage(currentPage+1);
-if(endX-startX>50 && currentPage>1) nextPage(currentPage-1);
+    let endX=e.changedTouches[0].clientX;
+    if(startX-endX>50 && currentPage<4) nextPage(currentPage+1);
+    if(endX-startX>50 && currentPage>1) nextPage(currentPage-1);
 });
 
 /* Enter Key */
 window.onload=()=>{
-document.getElementById("password-input").focus();
-document.getElementById("password-input").addEventListener("keypress",(e)=>{
-if(e.key==="Enter") checkPassword();
-});
+    document.getElementById("password-input").focus();
+    document.getElementById("password-input").addEventListener("keypress",(e)=>{
+        if(e.key==="Enter") checkPassword();
+    });
 };
 </script>
 
