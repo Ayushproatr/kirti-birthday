@@ -50,8 +50,6 @@
             0%, 100% { transform: translateY(0) rotate(-10deg); }
             50% { transform: translateY(-28px) rotate(10deg); }
         }
-        .teddy-wave { animation: teddyWave 2s ease-in-out infinite !important; }
-        @keyframes teddyWave { 0%,100%{transform:rotate(0)} 50%{transform:rotate(25deg)} }
         
         .speech-bubble {
             position: absolute;
@@ -65,28 +63,6 @@
         @keyframes bubblePop {
             from { transform: scale(0.4) translateY(20px); opacity: 0; }
             to { transform: scale(1) translateY(0); opacity: 1; }
-        }
-        
-        .secret-note {
-            position: absolute;
-            background: #fef3c7;
-            padding: 14px 24px;
-            border-radius: 9999px;
-            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1);
-            animation: notePop 0.8s ease forwards;
-            cursor: pointer;
-        }
-        @keyframes notePop {
-            from { transform: scale(0.5) rotate(-12deg); opacity: 0; }
-            to { transform: scale(1) rotate(0); opacity: 1; }
-        }
-        
-        .cuteness-meter {
-            height: 16px;
-            background: linear-gradient(to right, #ec4899, #c026d3, #a78bfa);
-            border-radius: 9999px;
-            transition: width 3s cubic-bezier(0.34, 1.56, 0.64, 1);
-            box-shadow: 0 0 35px rgba(236, 72, 153, 0.7);
         }
         
         .next-btn {
@@ -113,10 +89,10 @@
                 Open Your Royal Journey
             </button>
             
-            <p id="password-hint" class="mt-6 text-purple-600 text-sm">Hint: The password is when we first met 💕 (try in format like 16/12/2025)</p>
+            <p id="password-hint" class="mt-6 text-purple-600 text-sm">Hint: The password is when we first met 💕 (try format like 1/1/2025)</p>
             <p id="password-error" class="mt-6 text-red-500 text-sm hidden">Wrong code... try again 💕</p>
             
-            <!-- Secret Help Message (shows after one wrong attempt) -->
+            <!-- Help message (shows only after one wrong attempt) -->
             <div id="help-message" class="hidden mt-10 bg-pink-50 border border-pink-300 rounded-3xl p-8 text-left">
                 <p class="text-purple-700 text-lg leading-relaxed">
                     I knew you wouldn’t remember the password… but I’m here to help 😉<br><br>
@@ -139,11 +115,6 @@
             <source src="music.mp3" type="audio/mpeg">
         </audio>
         <button onclick="toggleMusic()" id="music-btn" class="w-11 h-11 flex items-center justify-center text-3xl text-purple-600 hover:text-pink-500 transition rounded-full hover:bg-purple-100">▶️</button>
-    </div>
-
-    <!-- Progress -->
-    <div class="fixed top-4 left-1/2 -translate-x-1/2 z-50 bg-white/80 backdrop-blur-md px-6 py-2 rounded-3xl shadow flex gap-2">
-        <div id="progress" class="flex gap-1"></div>
     </div>
 
     <!-- Page 1 -->
@@ -212,121 +183,18 @@
         <button onclick="nextPage(4)" class="next-btn mt-16 bg-gradient-to-r from-purple-500 to-pink-500 text-white px-16 py-7 rounded-3xl font-semibold text-xl">Continue the Magic 💕</button>
     </div>
 
-    <!-- Page 4: Happp Challenge -->
+    <!-- Page 4: Final Thank You -->
     <div id="page4" class="page hero-bg flex flex-col items-center justify-center px-6 py-16 text-center relative">
-        <h2 class="title-font text-6xl text-purple-700 mb-8">The Happp Challenge 👑</h2>
-        <p class="text-2xl text-purple-600 mb-10">Type “happp” as many times as you want. Every one makes me smile bigger!</p>
+        <div class="text-9xl mb-10">👑🎉</div>
+        <h2 class="title-font text-6xl text-purple-700 mb-6">Thank You for Being My Princess</h2>
+        <p class="text-2xl text-purple-700 max-w-md">This whole surprise was made with all my heart just for you. Happy Birthday, Kirti. You deserve the world 💕</p>
         
-        <div class="bg-white rounded-3xl p-10 shadow-xl max-w-md mx-auto w-full">
-            <input id="happp-input" type="text" placeholder="happp..." 
-                   class="w-full bg-purple-50 border-2 border-purple-200 focus:border-pink-400 rounded-3xl px-8 py-7 text-4xl text-center outline-none">
-            <button onclick="sendHappp()" class="mt-8 w-full bg-pink-500 text-white font-semibold text-xl py-6 rounded-3xl">Send Happp 💖</button>
-        </div>
-        
-        <div id="happp-response" class="mt-10 text-2xl min-h-[100px]"></div>
-        
-        <div class="mt-12 w-full max-w-md mx-auto">
-            <div class="flex justify-between text-sm text-purple-600 mb-2">
-                <span>Kirti’s Cuteness Meter</span>
-                <span id="meter-percent">0%</span>
-            </div>
-            <div class="bg-purple-200 rounded-full p-1">
-                <div id="cuteness-bar" class="cuteness-meter w-0"></div>
-            </div>
-        </div>
-        
-        <div class="absolute bottom-12 left-12 text-6xl teddy">🧸</div>
-        <div class="speech-bubble absolute bottom-20 left-28 text-purple-700 text-sm">You are SO cute when you say happp! 🥰</div>
-        
-        <button onclick="nextPage(5)" class="next-btn mt-12 bg-white text-purple-700 px-12 py-5 rounded-3xl shadow text-lg">Next Chapter →</button>
-    </div>
-
-    <!-- Page 5: Promise -->
-    <div id="page5" class="page bg-white flex flex-col items-center justify-center px-6 py-16 text-center relative">
-        <div class="max-w-2xl">
-            <div class="text-8xl mb-10">🤍</div>
-            <h2 class="title-font text-6xl text-purple-700 mb-10">My Promise to You</h2>
-            <p class="text-2xl leading-relaxed text-purple-800">I will always be with you — in happiness, sadness, anxiety, or any moment. You never have to face anything alone.</p>
-        </div>
-        
-        <div class="absolute top-16 right-12 text-7xl teddy" style="animation-delay:1s;">🧸</div>
-        <div class="speech-bubble absolute top-12 right-28 text-purple-700 text-sm">I'll always protect your smile, princess!</div>
-        
-        <button onclick="nextPage(6)" class="next-btn mt-16 bg-gradient-to-r from-purple-600 to-pink-500 text-white px-16 py-7 rounded-3xl text-xl font-semibold">Keep Going ✨</button>
-    </div>
-
-    <!-- Page 6: Why You Are Special -->
-    <div id="page6" class="page hero-bg flex flex-col items-center justify-center px-6 py-16 text-center relative">
-        <h2 class="title-font text-6xl text-purple-700 mb-8">Why You Are My Princess</h2>
-        <div class="max-w-2xl grid grid-cols-2 gap-6 text-left">
-            <div class="bg-white p-6 rounded-3xl shadow">✨ Your smile lights up my day</div>
-            <div class="bg-white p-6 rounded-3xl shadow">💕 Every “happp” melts my heart</div>
-            <div class="bg-white p-6 rounded-3xl shadow">🍽️ Our future food adventures</div>
-            <div class="bg-white p-6 rounded-3xl shadow">👑 You make everything magical</div>
-        </div>
-        
-        <button onclick="nextPage(7)" class="next-btn mt-12 bg-white text-purple-700 px-14 py-6 rounded-3xl shadow text-xl">More Magic →</button>
-    </div>
-
-    <!-- Page 7: Teddy Messages -->
-    <div id="page7" class="page bg-gradient-to-br from-pink-100 to-purple-100 flex flex-col items-center justify-center px-6 py-16 text-center relative">
-        <h2 class="title-font text-6xl text-purple-700 mb-8">Messages from Your Birthday Teddies</h2>
-        <div class="flex flex-wrap justify-center gap-12 max-w-4xl">
-            <div class="relative">
-                <div class="text-8xl teddy">🧸</div>
-                <div class="speech-bubble -top-2 left-14 text-purple-700">Kirti, you are the cutest human ever!</div>
-            </div>
-            <div class="relative" style="animation-delay:0.6s;">
-                <div class="text-8xl teddy teddy-wave">🧸</div>
-                <div class="speech-bubble -top-2 right-14 text-purple-700">I wish I could hug you right now!</div>
-            </div>
-            <div class="relative" style="animation-delay:1.2s;">
-                <div class="text-8xl teddy">🧸</div>
-                <div class="speech-bubble -bottom-2 left-14 text-purple-700">You make Ayush the happiest!</div>
-            </div>
-        </div>
-        
-        <button onclick="nextPage(8)" class="next-btn mt-16 bg-gradient-to-r from-purple-500 to-pink-500 text-white px-16 py-7 rounded-3xl font-semibold text-xl">Next Cute Surprise →</button>
-    </div>
-
-    <!-- Page 8: Birthday Wish -->
-    <div id="page8" class="page hero-bg flex flex-col items-center justify-center px-6 py-16 text-center relative">
-        <div class="text-9xl mb-10">🌟🪄</div>
-        <h2 class="title-font text-6xl text-purple-700 mb-6">My Birthday Wish for You</h2>
-        <p class="text-2xl max-w-xl leading-relaxed text-purple-700">May this year bring you endless smiles, delicious food adventures, and all the happiness you deserve. You are my favorite person.</p>
-        
-        <div class="absolute bottom-12 left-12 text-7xl teddy">🧸</div>
-        <div class="speech-bubble absolute bottom-20 left-28 text-purple-700 text-sm">Make a wish, princess! I'll help blow the candles ✨</div>
-        
-        <button onclick="nextPage(9)" class="next-btn mt-16 bg-white text-purple-700 px-14 py-6 rounded-3xl shadow text-xl">Final Chapter →</button>
-    </div>
-
-    <!-- Page 9: Final Reveal -->
-    <div id="page9" class="page hero-bg flex flex-col items-center justify-center px-6 py-16 text-center relative">
-        <div class="max-w-3xl">
-            <div class="text-9xl mb-10">👑🎉✨</div>
-            <h2 class="title-font text-7xl text-transparent bg-clip-text bg-gradient-to-br from-purple-700 to-pink-500 mb-8">You reached the end, my Princess</h2>
-            <p class="text-3xl text-purple-700 leading-relaxed">This entire journey was created with so much love and hard work just for you.</p>
-            
-            <div class="mt-16">
-                <div class="text-2xl font-medium text-pink-600 mb-4">Final Cuteness Level</div>
-                <div class="bg-purple-200 rounded-full p-1">
-                    <div id="final-meter" class="cuteness-meter w-[98%]"></div>
-                </div>
-                <button onclick="breakCutenessMeter()" class="mt-8 bg-pink-500 text-white px-12 py-5 rounded-3xl text-lg font-semibold">Reveal the Truth ✨</button>
-            </div>
-            
-            <div id="final-gift" class="hidden mt-12 bg-white/80 backdrop-blur-2xl rounded-3xl p-12 text-xl">
-                <p>Your cuteness is beyond any meter, Kirti. You are the most beautiful, kind, and loved girl in my life. Happy Birthday, my princess.</p>
-                <p class="mt-8 script-font text-5xl text-pink-600">- Your Ayush 💕</p>
-            </div>
-        </div>
+        <button onclick="launchConfetti()" class="next-btn mt-12 bg-pink-500 text-white px-12 py-5 rounded-3xl text-xl">More Sparkles ✨</button>
     </div>
 
     <script>
         let currentPage = 1;
-        const totalPages = 9;
-        let cutenessLevel = 0;
+        const totalPages = 4;
         let wrongAttempts = 0;
         const correctPassword = "16/12/2025";
         
@@ -343,7 +211,6 @@
             } else {
                 wrongAttempts++;
                 error.classList.remove('hidden');
-                
                 if (wrongAttempts >= 1) {
                     help.classList.remove('hidden');
                 }
@@ -366,36 +233,11 @@
             const newPage = document.getElementById('page' + currentPage);
             newPage.classList.add('active');
             updateProgress();
-            launchConfetti(90);
+            launchConfetti(80);
         }
         
         function launchConfetti(count = 120) {
             confetti({ particleCount: count, spread: 80, origin: { y: 0.6 }, colors: ['#c026d3', '#ec4899', '#a78bfa'] });
-        }
-        
-        function sendHappp() {
-            const input = document.getElementById('happp-input').value.trim().toLowerCase();
-            const resp = document.getElementById('happp-response');
-            if (input.includes('happp') || input.length > 2) {
-                cutenessLevel = Math.min(100, cutenessLevel + 22);
-                document.getElementById('cuteness-bar').style.width = cutenessLevel + '%';
-                document.getElementById('meter-percent').textContent = cutenessLevel + '%';
-                resp.innerHTML = `HAPPPPPP!!! 💕<br>Your cuteness just exploded!`;
-                launchConfetti(110);
-            } else {
-                resp.textContent = "Any happp from you makes the world brighter 💖";
-            }
-            document.getElementById('happp-input').value = '';
-        }
-        
-        function breakCutenessMeter() {
-            const meter = document.getElementById('final-meter');
-            meter.style.width = '100%';
-            setTimeout(() => {
-                meter.style.background = 'linear-gradient(to right, #eab308, #ef4444)';
-                launchConfetti(320);
-                document.getElementById('final-gift').classList.remove('hidden');
-            }, 1400);
         }
         
         function toggleMusic() {
@@ -421,4 +263,4 @@
         });
     </script>
 </body>
-                        </html>
+</html>
