@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>✨ For My Princess Kirti • 24 August ✨</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Dancing+Script:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@400;500;600&display=swap');
+        
+        body {
+            font-family: 'Inter', system_ui, sans-serif;
+        }
+        .title-font {
+            font-family: 'Playfair Display', serif;
+        }
+        .script-font {
+            font-family: 'Dancing Script', cursive;
+        }
+        
+        .hero-bg {
+            background: linear-gradient(135deg, #f3e8ff 0%, #fce7f3 40%, #ede9fe 100%);
+            animation: gentleShift 30s ease infinite;
+        }
+        
+        @keyframes gentleShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        
+        .floating-heart {
+            position: absolute;
+            font-size: 2.8rem;
+            animation: floatHeart 9s ease-in-out infinite;
+            opacity: 0.75;
+            pointer-events: none;
+        }
+        
+        @keyframes floatHeart {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-90px) rotate(18deg); }
+        }
+        
+        .reel-card {
+            transition: all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+        .reel-card:hover {
+            transform: scale(1.07) translateY(-15px);
+        }
+        
+        .glow-text {
+            text-shadow: 0 0 35px rgba(192, 38, 211, 0.6);
+        }
+    </style>
+</head>
+<body class="hero-bg min-h-screen overflow-x-hidden text-purple-800">
+
+    <!-- Floating Music Player - Tera Yaar Hoon Main -->
+    <div class="fixed bottom-6 right-6 z-50 bg-white/95 backdrop-blur-2xl rounded-3xl shadow-2xl px-6 py-4 flex items-center gap-4 border border-purple-200">
+        <span class="text-3xl">🎵</span>
+        <div class="text-left pr-2">
+            <div class="font-medium text-purple-700 text-base">Tera Yaar Hoon Main</div>
+            <div class="text-xs text-pink-600 tracking-widest">Arijit Singh • Playing for you, Kirti 💕</div>
+        </div>
+        <audio id="bg-music" loop>
+            <source src="music.mp3" type="audio/mpeg">
+        </audio>
+        <button onclick="toggleMusic()" id="music-btn"
+                class="w-11 h-11 flex items-center justify-center text-3xl text-purple-600 hover:text-pink-500 transition-colors rounded-full hover:bg-purple-100">
+            ▶️
+        </button>
+    </div>
+
+    <!-- Navbar -->
+    <nav class="sticky top-0 bg-white/85 backdrop-blur-lg z-50 border-b border-purple-100">
+        <div class="max-w-6xl mx-auto px-8 py-6 flex justify-between items-center">
+            <div class="flex items-center gap-3">
+                <span class="text-4xl">👑</span>
+                <span class="title-font text-3xl font-bold bg-gradient-to-r from-purple-600 to-pink-500 bg-clip-text text-transparent">Princess Kirti</span>
+            </div>
+            <div class="flex gap-9 font-medium text-purple-700">
+                <a href="#letter" class="hover:text-pink-500 transition">Letter</a>
+                <a href="#dream" class="hover:text-pink-500 transition">Our Dream</a>
+                <a href="#happp" class="hover:text-pink-500 transition">Happp Zone</a>
+                <a href="#promise" class="hover:text-pink-500 transition">My Promise</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section - Viral Reel Inspired -->
+    <header class="min-h-screen flex items-center relative hero-bg">
+        <div class="absolute inset-0 pointer-events-none overflow-hidden">
+            <div class="floating-heart text-pink-400 left-[12%] top-[18%]">💖</div>
+            <div class="floating-heart text-purple-400 left-[28%] top-[52%]" style="animation-delay: 1.8s;">✨</div>
+            <div class="floating-heart text-rose-300 left-[10%] bottom-[25%]" style="animation-delay: 3.2s;">👑</div>
+            <div class="floating-heart text-violet-300 right-[18%] top-[32%]" style="animation-delay: 2.4s;">🌸</div>
+            <div class="floating-heart text-pink-300 right-[22%] bottom-[35%]" style="animation-delay: 0.9s;">💕</div>
+        </div>
+
+        <div class="max-w-5xl mx-auto text-center px-6 relative z-10">
+            <div class="inline-block bg-white/70 backdrop-blur-md px-10 py-4 rounded-3xl mb-10 shadow-xl border border-purple-100">
+                <span class="text-2xl font-medium">🎂 24 August • The Most Beautiful Day</span>
+            </div>
+            
+            <h1 class="title-font text-7xl md:text-[5.8rem] leading-none font-bold glow-text bg-gradient-to-br from-purple-700 via-pink-500 to-violet-600 bg-clip-text text-transparent">
+                Happy Birthday,<br>My Dearest Princess Kirti
+            </h1>
+            
+            <p class="mt-8 text-3xl text-purple-700 script-font">The girl who makes every "happp" feel like pure magic ✨</p>
+            
+            <button onclick="startMagic()" 
+                    class="mt-16 group inline-flex items-center gap-6 bg-gradient-to-r from-pink-500 to-purple-600 text-white font-semibold text-2xl px-16 py-8 rounded-3xl shadow-2xl hover:shadow-pink-500/50 transition-all hover:scale-105 active:scale-95">
+                <span>Open Your Heartfelt Surprise</span>
+                <span class="text-5xl transition group-hover:rotate-12">🪄</span>
+            </button>
+            
+            <p class="mt-20 text-purple-500 text-lg">Made with endless love, hard work &amp; a full heart by your Ayush 💕</p>
+        </div>
+    </header>
+
+    <!-- Heartfelt Letter -->
+    <section id="letter" class="max-w-4xl mx-auto px-6 py-28">
+        <div class="bg-white rounded-3xl shadow-2xl p-16 border border-purple-100">
+            <div class="flex justify-center mb-10">
+                <span class="px-10 py-3 bg-purple-50 text-purple-600 rounded-3xl text-xl font-medium flex items-center gap-3">
+                    📜 A Love Letter from Ayush
+                </span>
+            </div>
+            
+            <div class="prose prose-2xl max-w-none text-purple-800 leading-relaxed">
+                <p class="mb-10">My dearest Kirti, my favorite princess in this entire world,</p>
+                
+                <p class="mb-10">Every time I think of you, my heart fills with warmth. You bring light to my days with your smile, your laughter, and those adorable “happp” moments that I can never get enough of.</p>
+                
+                <p class="mb-10">We’ve always dreamt of the day we meet — sitting together, sharing the most delicious food, laughing until our stomachs hurt, and creating memories that last forever. I can’t wait for that beautiful day to come true.</p>
+                
+                <p class="mb-12">Thank you for being the most special person in my life. You make ordinary moments feel like fairy tales.</p>
+                
+                <div class="bg-gradient-to-r from-purple-50 to-pink-50 p-10 rounded-3xl italic text-2xl border-l-8 border-purple-400">
+                    I will always be with you — no matter what situation life brings.<br>
+                    In happiness, in sadness, in anxiety, or in moments of darkness…<br>
+                    I will hold your hand and remind you how incredibly loved and cherished you are.
+                </div>
+            </div>
+            
+            <div class="text-right mt-16">
+                <p class="script-font text-5xl text-pink-600">Forever your Ayush</p>
+                <p class="text-purple-400">The one who can never shut up about how much he loves you 💖</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Our Dream Section -->
+    <section id="dream" class="py-28 bg-white/60">
+        <div class="max-w-5xl mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="title-font text-6xl text-purple-700">Our Beautiful Dream ✨</h2>
+                <p class="text-2xl text-purple-600 mt-4">The moment we’ve been waiting for…</p>
+            </div>
+            
+            <div class="reel-card max-w-2xl mx-auto bg-white rounded-3xl p-14 shadow-2xl text-center border border-purple-100">
+                <div class="text-8xl mb-8">🍽️❤️</div>
+                <h3 class="text-4xl font-semibold text-purple-700 mb-6">The Day We Finally Meet</h3>
+                <p class="text-2xl leading-relaxed text-purple-600">
+                    We’ll eat the most extra delicious food together, laugh non-stop, talk about everything and nothing…<br>
+                    Just you and me, turning our dream into reality. I can already feel the happiness in my heart.
+                </p>
+                <div class="mt-12 text-pink-500 text-sm tracking-widest">This reel plays in my heart every single day</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Happp Zone -->
+    <section id="happp" class="max-w-4xl mx-auto px-6 py-28">
+        <div class="bg-gradient-to-br from-purple-600 via-pink-500 to-violet-600 text-white rounded-3xl p-16 text-center">
+            <h2 class="title-font text-6xl mb-6">The Happp Zone 💕</h2>
+            <p class="text-2xl opacity-90 mb-12">You say it with love… and it melts my heart every time</p>
+            
+            <input id="happp-input" type="text" placeholder="happp..." 
+                   class="w-full max-w-md mx-auto bg-white/20 border border-white/40 rounded-3xl px-10 py-8 text-4xl text-center outline-none placeholder:text-white/60">
+            
+            <button onclick="sendHappp()" 
+                    class="mt-8 bg-white text-purple-700 font-bold px-16 py-6 rounded-3xl text-2xl shadow-xl hover:bg-yellow-200 transition">
+                Send My Happp 💖
+            </button>
+            
+            <div id="happp-response" class="mt-12 text-3xl min-h-[100px]"></div>
+        </div>
+    </section>
+
+    <!-- Promise -->
+    <section id="promise" class="max-w-4xl mx-auto px-6 py-28">
+        <div class="bg-white rounded-3xl p-16 shadow-2xl text-center">
+            <div class="text-7xl mb-8">🤍</div>
+            <h2 class="title-font text-5xl mb-10 text-purple-700">My Promise to You, Kirti</h2>
+            <p class="text-3xl leading-relaxed max-w-3xl mx-auto text-purple-800">
+                I will always be with you, no matter what situation life brings.<br><br>
+                In happiness, in sadness, in anxiety, or in moments of darkness —<br>
+                I will be right by your side, holding your hand and reminding you how incredibly special you are to me.
+            </p>
+            <p class="mt-16 script-font text-4xl text-pink-600">- Your Ayush</p>
+        </div>
+    </section>
+
+    <!-- Final Gift Reveal -->
+    <section class="py-28 bg-gradient-to-br from-purple-500 to-pink-500 text-white text-center">
+        <div class="max-w-3xl mx-auto px-6">
+            <h2 class="title-font text-6xl mb-8">Your Special Gift from Ayush</h2>
+            <p class="text-2xl mb-12">This entire surprise — every word, every sparkle, every heartbeat — was created with so much love and hard work just for you, my princess.</p>
+            
+            <button onclick="revealGift()" 
+                    class="bg-white text-purple-700 font-bold text-3xl px-20 py-8 rounded-3xl shadow-2xl hover:scale-110 transition flex items-center gap-4 mx-auto">
+                Open Your Royal Gift 🎁
+            </button>
+            
+            <div id="gift-reveal" class="hidden mt-16 bg-white/20 backdrop-blur-2xl rounded-3xl p-12 text-left">
+                <p class="text-3xl leading-relaxed">Kirti, you deserve the whole universe. Thank you for letting me be part of your story. I hope this makes you feel like the most loved princess in the world — because you truly are.</p>
+                <p class="mt-10 text-2xl">Happy Birthday once again, my favorite girl.<br>— Ayush 💕</p>
+            </div>
+        </div>
+    </section>
+
+    <footer class="py-16 bg-purple-950 text-purple-300 text-center">
+        <p class="text-xl">Made with endless love &amp; hard work by Ayush for his Princess Kirti • 24 August</p>
+        <p class="mt-4 text-sm">This is our little forever magical world ✨</p>
+    </footer>
+
+    <script>
+        function launchConfetti() {
+            confetti({
+                particleCount: 200,
+                spread: 90,
+                origin: { y: 0.6 },
+                colors: ['#c026d3', '#ec4899', '#a78bfa', '#f472b6', '#facc15']
+            });
+        }
+
+        function startMagic() {
+            launchConfetti();
+            setTimeout(launchConfetti, 400);
+            document.getElementById('letter').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        let happpCount = 0;
+        function sendHappp() {
+            const input = document.getElementById('happp-input').value.trim().toLowerCase();
+            const resp = document.getElementById('happp-response');
+            happpCount++;
+            
+            if (input.includes('happp')) {
+                resp.innerHTML = `HAPPPPPP!!! 💕<br><span class="text-2xl">You’ve said it ${happpCount} times today… and I still can’t stop smiling. I love you more with every happp, Kirti.</span>`;
+                launchConfetti();
+            } else {
+                resp.textContent = "Close enough, princess! Every version of you makes my heart full 💖";
+            }
+            document.getElementById('happp-input').value = '';
+        }
+
+        function revealGift() {
+            const gift = document.getElementById('gift-reveal');
+            gift.classList.remove('hidden');
+            launchConfetti();
+            setTimeout(launchConfetti, 500);
+        }
+
+        function toggleMusic() {
+            const audio = document.getElementById('bg-music');
+            const btn = document.getElementById('music-btn');
+            if (audio.paused) {
+                audio.play();
+                btn.textContent = '⏸️';
+            } else {
+                audio.pause();
+                btn.textContent = '▶️';
+            }
+        }
+
+        // Initialize
+        window.onload = () => {
+            const audio = document.getElementById('bg-music');
+            audio.volume = 0.38;   // Soft romantic volume
+            
+            // Gentle confetti on load
+            setTimeout(() => {
+                launchConfetti();
+            }, 1200);
+
+            console.log('%c❤️ Made with all my heart for Princess Kirti by Ayush', 'color:#c026d3; font-size:16px');
+        };
+    </script>
+</body>
+              </html>
